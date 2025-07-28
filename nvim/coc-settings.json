@@ -1,0 +1,8 @@
+{
+    "clangd.arguments": [
+	"--header-insertion=never"
+    ],
+    "inlayHint.enable": false,
+    "semanticTokens.enable": true,
+    "semanticTokens.filetypes": ["cpp", "c"]
+}

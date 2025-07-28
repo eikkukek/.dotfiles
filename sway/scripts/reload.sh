@@ -1,0 +1,2 @@
+pkill waybar
+swaymsg reload

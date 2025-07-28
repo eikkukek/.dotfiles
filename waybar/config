@@ -1,0 +1,86 @@
+{
+	"modules-left": ["sway/workspaces"],
+	"modules-center": ["clock", "custom/spacer", "custom/weather", "tray"],
+	"modules-right": [
+		"custom/network",
+		"custom/spacer",
+		"custom/cpu",
+		"custom/spacer",
+		"custom/memory",
+		"custom/spacer",
+		"custom/root",
+		"custom/spacer",
+		"custom/extra",
+	],
+
+	"tray": {
+		"icon-size": 16,
+		"spacing": 10,
+	},
+
+	"custom/spacer": {
+		"interval": "once",
+		"format": "|",
+		"tooltip": false,
+	},
+
+	"sway/workspaces": {
+		"format": "{value}",
+		"disable-scroll": true,
+		"disable-markup": true,
+		"all_outputs": false,
+	},
+
+	"clock": {
+		"interval": 1,
+		"format": "{:%a %d/%m %H:%M:%S}",
+		"tooltip": false,
+	},
+
+	"custom/weather": {
+		"exec": "cat /tmp/.waybar_weather || echo '{\"text\": \"\"}'",
+		"return-type": "json",
+		"interval": 10,
+		"format": "{}",
+		"tooltip-format": "{alt}",
+	},
+
+	"custom/network": {
+		"exec": "~/.config/waybar/scripts/network.sh",
+		"interval": 1,
+		"format": "{}",
+		"tooltip-format": "{alt}",
+		"return-type": "json",
+	},
+
+	"custom/cpu": {
+		"exec": "~/.config/waybar/scripts/cpu.sh good warn alert",
+		"return-type": "json",
+		"interval": 1,
+		"format": "{}",
+	},
+
+	"custom/memory": {
+		"exec": "~/.config/waybar/scripts/memory.sh good warn alert",
+		"return-type": "json",
+		"format": "{}",
+		"tooltip-format": "{alt}",
+		"interval": 1,
+	},
+
+	"custom/root": {
+		"exec": "~/.config/waybar/scripts/storage.sh / root good warn alert",
+		"return-type": "json",
+		"format": "{}",
+		"tooltip-format": "{alt}",
+		"interval": 5,
+	},
+
+	"custom/extra": {
+		"exec": "~/.config/waybar/scripts/storage.sh /mnt/extra extra good warn alert",
+		"return-type": "json",
+		"format": "{}",
+		"tooltip-format": "{alt}",
+		"interval": 5,
+	},
+}

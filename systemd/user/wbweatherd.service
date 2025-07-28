@@ -1,0 +1,13 @@
+[Unit]
+Description=Waybar Weather Daemon
+After=network.target
+
+[Service]
+ExecStart=%h/bin/wbweatherd.sh
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

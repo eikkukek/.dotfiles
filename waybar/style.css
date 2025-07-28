@@ -1,0 +1,170 @@
+* {
+	font-family: "FiraCode Nerd Font";
+	font-size: 16px;
+}
+
+#custom-spacer
+{
+	background: rgba(26, 27, 38, 0.2);
+	color: rgba(220, 220, 220, 0.95);
+	padding: 4px 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#workspaces button {
+	background: transparent;
+	color: rgba(120, 120, 120, 0.95);
+	padding: 0px 6px;
+	border: none;
+	box-shadow: none;
+	transition: background 0s, color 0s;
+}
+
+#workspaces button.visible {
+	color: rgba(255, 255, 255, 0.95);
+}
+
+#workspaces button.focused {
+	color: rgba(102, 222, 255, 0.95);
+}
+
+#waybar {
+	background: transparent;
+	color: rgba(102, 222, 255, 0.95);
+	border: none;
+	box-shadow: none;
+}
+
+#workspaces
+{
+	background: rgba(26, 27, 38, 0.2);
+	color: rgba(255, 255, 255, 0.95);
+	padding: 4px 20px;
+	border-radius: 20px;
+	margin: 10px;
+}
+
+#clock
+{
+	background: rgba(26, 27, 38, 0.2);
+	color: rgba(255, 255, 255, 0.95);
+	padding: 4px 20px;
+	padding-right: 6px;
+	border-radius: 20px 0px 0px 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#custom-weather
+{
+	background: rgba(26, 27, 38, 0.2);
+	color: rgba(255, 255, 255, 0.95);
+	padding: 4px 20px;
+	padding-left: 6px;
+	border-radius: 0px 20px 20px 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#tray
+{
+	background-color: rgba(26, 27, 38, 0.2);
+	padding: 4px 20px;
+	border-radius: 20px 20px 20px 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+
+#custom-network.info
+{
+	background: rgba(26, 27, 38, 0.2);
+	color: rgba(102, 222, 255, 0.95);
+	padding: 4px 6px;
+	padding-left: 20px;
+	border-radius: 20px 0px 0px 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#custom-network.alert
+{
+	background: rgba(26, 27, 38, 0.2);
+	color: rgba(255, 102, 102, 0.95);
+	padding: 4px 6px;
+	padding-left: 20px;
+	border-radius: 20px 0px 0px 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#custom-cpu.good,
+#custom-memory.good,
+#custom-root.good
+{
+	background: rgba(26, 27, 38, 0.2);
+	color: rgba(102, 255, 102, 0.95);
+	padding: 4px 6px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#custom-cpu.warn,
+#custom-memory.warn,
+#custom-root.warn
+{
+	background: rgba(26, 27, 38, 0.2);
+	color: rgba(255, 242, 102, 0.95);
+	padding: 4px 6px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#custom-network.alert,
+#custom-cpu.alert,
+#custom-memory.alert,
+#custom-root.alert
+{
+	background: rgba(26, 27, 38, 0.2);
+	color: rgba(255, 102, 102, 0.95);
+	padding: 4px 6px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#custom-extra.good
+{
+	background: rgba(26, 27, 38, 0.2);
+	color: rgba(102, 255, 102, 0.95);
+	padding: 4px 6px;
+	padding-right: 20px;
+	border-radius: 0px 20px 20px 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+#custom-extra.warn
+{
+	background: rgba(26, 27, 38, 0.2);
+	color: rgba(255, 242, 102, 0.95);
+	padding: 4px 6px;
+	padding-right: 20px;
+	border-radius: 0px 20px 20px 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+#custom-extra.alert
+{
+	background: rgba(26, 27, 38, 0.2);
+	color: rgba(255, 102, 102, 0.95);
+	padding: 4px 6px;
+	padding-right: 20px;
+	border-radius: 0px 20px 20px 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
