@@ -1,0 +1,5 @@
+nerd-fonts
+jq
+wl-clipboard
+wlsunset
+swaybg

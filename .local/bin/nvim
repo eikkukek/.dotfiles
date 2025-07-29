@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -n "$TMUX" ]; then
+	export TMUX_WIN_ID=$(tmux display-message -p "#{window_id}")
+fi
+
+exec /usr/bin/nvim "$@"
