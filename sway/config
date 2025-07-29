@@ -9,7 +9,6 @@ set $right l
 
 # executables
 exec_always waybar
-exec_always clipman store 
 set $term ~/.config/sway/scripts/alacritty_tmux.sh
 set $menu tofi-run | xargs swaymsg exec --
 set $nav_script ~/.config/sway/scripts/nav.sh
