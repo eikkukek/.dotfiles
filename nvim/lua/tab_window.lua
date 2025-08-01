@@ -1,8 +1,12 @@
 local E = {}
 
 E.open = function()
+
 	local buf = vim.api.nvim_create_buf(true, false)
 	local tabs = {}
+
+	local width = 0
+
 	for i = 1, vim.fn.tabpagenr('$') do
 		local winnr = vim.fn.tabpagewinnr(i)
 		local buflist = vim.fn.tabpagebuflist(i)
@@ -10,7 +14,9 @@ E.open = function()
 		if bufnr ~= nil then
 			local bufname = vim.fn.bufname(bufnr)
 			local name = bufname ~= '' and vim.fn.fnamemodify(bufname, ':~:.') or '[No Name]'
-			tabs[i] = i .. ': ' .. name
+			name = i .. ': ' .. name
+			width = math.max(width, #name)
+			tabs[i] = name
 		end
 	end
 
@@ -20,7 +26,6 @@ E.open = function()
 
 	vim.api.nvim_buf_set_lines(buf, 0, -1, false, tabs)
 
-	local width = 30
 	local height = #tabs
 	local row = math.floor((vim.o.lines - height) / 2)
 	local col = math.floor((vim.o.columns - width) / 2)
@@ -82,6 +87,15 @@ E.open = function()
 		end
 		vim.cmd('tabn' .. line)
 	end, { buffer = buf })
+
+	vim.keymap.set("n", "<Esc>", function()
+		if vim.api.nvim_win_is_valid(win) then
+			vim.api.nvim_win_close(win, true)
+		end
+		if vim.api.nvim_buf_is_valid(buf) then
+			vim.api.nvim_buf_delete(buf, { force = true })
+		end	
+	end)
 
 	vim.api.nvim_create_autocmd({"BufLeave", "WinLeave"}, {
 		buffer = buf,

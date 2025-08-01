@@ -43,10 +43,18 @@ local function hover(win, buf)
 			markdown_lines = {""}
 		end
 
+		local max_width = 80
+
+		if E.toggle_expand then
+			for _, line in ipairs(markdown_lines) do
+				max_width = math.max(max_width, #line)
+			end
+		end
+
 		local config = config or {}
 		config.focusable = false
 		config.border = "rounded"
-		config.max_width = 80
+		config.max_width = max_width
 		config.max_height = 50
 		config.wrap = false
 
@@ -78,9 +86,14 @@ E.setup = function()
 		callback = function()
 			vim.keymap.set("n", "K",
 				function()
-					E.rust_toggle_diagnostic = not E.rust_toggle_diagnostic
+					E.toggle_diagnostic = not E.toggle_diagnostic
 				end,
 				{ buffer = true }
+			)
+			vim.keymap.set("n", "<leader>+",
+				function()
+					E.toggle_expand = not E.toggle_expand
+				end
 			)
 			vim.keymap.set("n", "§",
 				function()
@@ -150,6 +163,12 @@ E.setup = function()
 		end
 	})
 
+	vim.api.nvim_create_autocmd("CursorMoved", {
+		callback = function()
+			E.toggle_expand = false
+		end,
+	})
+
 	vim.api.nvim_create_autocmd("CursorHold", {
 		callback = function()
 			if vim.bo.filetype ~= "rust" then
@@ -175,7 +194,7 @@ E.setup = function()
 				diagnostics
 			)
 			if #cursor_diagnostics > 0 then
-				if E.rust_toggle_diagnostic then
+				if E.toggle_diagnostic then
 					local win = vim.api.nvim_get_current_win()
 					local buf = vim.api.nvim_win_get_buf(win)
 					hover(win, buf)
@@ -190,7 +209,7 @@ E.setup = function()
 					)
 				end
 			else
-				E.rust_toggle_diagnostic = false
+				E.toggle_diagnostic = false
 				local win = vim.api.nvim_get_current_win()
 				local buf = vim.api.nvim_win_get_buf(win)
 				hover(win, buf)
