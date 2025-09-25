@@ -1,35 +1,34 @@
 local E = {}
 
-local lspconfig = require 'lspconfig'
-
 local lsp_common = require 'lsp_common'
+local lsp_util = require 'lspconfig.util'
 
 E.setup = function()
 
 
-	lspconfig.ccls.setup({
-		on_attach = function(client, bufnr)
-		end,
-		cmd = { "ccls" },
+	vim.lsp.config('ccls', {
+		cmd = { 'ccls' },
 		init_options = {
-			compilationDatabaseDirectory = "build",
+			compilationDatabaseDirectory = 'build',
 		},
-		root_dir = lspconfig.util.root_pattern("compile_commands.json", "CMakeLists.txt"),
+		root_markers = { lsp_util.root_pattern('compile_commands.json', 'CMakeLists.txt') },
 	})
 
-	vim.api.nvim_create_autocmd("FileType", {
-		pattern = "ccls",
+	vim.lsp.enable({ 'ccls' })
+
+	vim.api.nvim_create_autocmd('FileType', {
+		pattern = 'ccls',
 		callback = function()
 			vim.diagnostic.config({
 				float = {
-						border = "rounded",
-						source = "always",
-						header = "",
-						prefix = "",
+						border = 'rounded',
+						source = 'always',
+						header = '',
+						prefix = '',
 						format = function(diagnostic)
 							local relatedInformation = diagnostic.user_data.lsp.relatedInformation
 							if relatedInformation and #relatedInformation then
-								return string.format("[%s] %s \n%s %s:%i:%i",
+								return string.format('[%s] %s \n%s %s:%i:%i',
 									vim.diagnostic.severity[diagnostic.severity],
 									diagnostic.message,
 									relatedInformation[1].message,
@@ -38,7 +37,7 @@ E.setup = function()
 									relatedInformation[1].location.range.start.character
 								)
 							end
-							return string.format("[%s] %s",
+							return string.format('[%s] %s',
 								vim.diagnostic.severity[diagnostic.severity],
 								diagnostic.message
 							)
@@ -51,13 +50,13 @@ E.setup = function()
 		end
 	})
 
-	vim.api.nvim_create_autocmd("CursorHold", {
+	vim.api.nvim_create_autocmd('CursorHold', {
 		callback = function()
-			if vim.bo.filetype ~= "cpp" and vim.bo.filetype ~= "c" then
+			if vim.bo.filetype ~= 'cpp' and vim.bo.filetype ~= 'c' then
 				return
 			end
-			local lnum = vim.fn.line(".") - 1
-			local col = vim.fn.col(".") - 1
+			local lnum = vim.fn.line('.') - 1
+			local col = vim.fn.col('.') - 1
 			local diagnostics = vim.diagnostic.get(0, {
 				lnum = lnum,
 			})
@@ -79,7 +78,7 @@ E.setup = function()
 				vim.diagnostic.open_float(
 					0,
 					{
-						scope = "cursor";
+						scope = 'cursor';
 						focusable = false,
 						severity_sort = true,
 					}
@@ -87,7 +86,7 @@ E.setup = function()
 			else
 				local win = vim.api.nvim_get_current_win()
 				local buf = vim.api.nvim_win_get_buf(win)
-				lsp_common.hover_doc(win, buf, "ccls", false)
+				lsp_common.hover_doc(win, buf, 'ccls', false)
 			end
 		end
 	})

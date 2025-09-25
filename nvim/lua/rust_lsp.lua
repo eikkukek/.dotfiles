@@ -1,10 +1,6 @@
 local E = {}
 
-local lspconfig = require 'lspconfig'
-
-lspconfig.rust_analyzer.setup({
-	on_attach = function(client, bufnr)
-	end,
+vim.lsp.config('rust_analyzer', {
 	settings = {
 		['rust-analyzer'] = {
 			cargo = { allFeatures = true },
@@ -12,6 +8,8 @@ lspconfig.rust_analyzer.setup({
 		},
 	}
 })
+
+vim.lsp.enable({'rust_analyzer'})
 
 local lsp_common = require 'lsp_common'
 
