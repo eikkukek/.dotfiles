@@ -5,13 +5,13 @@ local lsp_util = require 'lspconfig.util'
 
 E.setup = function()
 
-
 	vim.lsp.config('ccls', {
 		cmd = { 'ccls' },
 		init_options = {
 			compilationDatabaseDirectory = 'build',
 		},
-		root_markers = { lsp_util.root_pattern('compile_commands.json', 'CMakeLists.txt') },
+		--root_dir = lsp_util.root_pattern('CMakeLists.txt'),
+		root_markers = { 'CMakeLists.txt', 'compile_commands.json' },
 	})
 
 	vim.lsp.enable({ 'ccls' })
