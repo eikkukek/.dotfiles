@@ -34,6 +34,7 @@ while true; do
 	if [[ $app_id != "Alacritty" ]]; then
 		break
 	fi
+	sleep 1
 done
 
 tmux kill-session -t $session_name

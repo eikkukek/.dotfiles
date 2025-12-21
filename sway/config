@@ -15,21 +15,20 @@ set $nav_script ~/.config/sway/scripts/nav.sh
 set $reload_script ~/.config/sway/scripts/reload.sh
 
 # wallpaper
-set $wallpaper ~/Pictures/nightreign.jpg
-exec_always swaybg -o DP-1 -i $wallpaper -m fill -o DP-2 -i $wallpaper -m -fill
+set $wallpaper ~/.dotfiles/cyberpunk.mp4
+exec_always mpvpaper -o "loop" eDP-1 $wallpaper
 
 exec wlsunset -S 06:30 -s 21:00 -t 4000 -T 6500
 
 # outputs
-output DP-1 pos 0 0 mode 2560x1440@164.835Hz
-output DP-2 pos 2560 0 mode 1920x1080@165.003Hz
+output eDP-1 pos 0 0 mode 1920x1080@60.001Hz
 
-workspace 1 output DP-1
-workspace 2 output DP-2
-
+workspace 1 output eDP-1
 # Input
 input * {
 	xkb_layout "fi"
+	xkb_options "lv3:caps_switch"
+	natural_scroll enabled 
 }
 
 ### Key bindings
@@ -48,6 +47,8 @@ input * {
 
     # Start your launcher
     bindsym $mod+d exec $menu
+
+	bindsym $mod+Shift+p exec swaylock -i $wallpaper
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
