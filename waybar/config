@@ -4,13 +4,13 @@
 	"modules-right": [
 		"custom/network",
 		"custom/spacer",
+		"custom/battery",
+		"custom/spacer",
 		"custom/cpu",
 		"custom/spacer",
 		"custom/memory",
 		"custom/spacer",
 		"custom/root",
-		"custom/spacer",
-		"custom/extra",
 	],
 
 	"tray": {
@@ -53,6 +53,13 @@
 		"return-type": "json",
 	},
 
+	"custom/battery": {
+		"exec": "~/.config/waybar/scripts/battery.sh good warn alert",
+		"interval": 2,
+		"format": "{}",
+		"return-type": "json",
+	},
+
 	"custom/cpu": {
 		"exec": "~/.config/waybar/scripts/cpu.sh good warn alert",
 		"return-type": "json",
@@ -70,14 +77,6 @@
 
 	"custom/root": {
 		"exec": "~/.config/waybar/scripts/storage.sh / root good warn alert",
-		"return-type": "json",
-		"format": "{}",
-		"tooltip-format": "{alt}",
-		"interval": 5,
-	},
-
-	"custom/extra": {
-		"exec": "~/.config/waybar/scripts/storage.sh /mnt/extra extra good warn alert",
 		"return-type": "json",
 		"format": "{}",
 		"tooltip-format": "{alt}",
