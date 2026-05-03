@@ -1,9 +1,9 @@
 -- plugins
 require 'paq' {
 
-    'savq/paq-nvim', -- let paq manage itself
+	'savq/paq-nvim', -- let paq manage itself
 
-    'lukas-reineke/indent-blankline.nvim', -- indent lines
+	'lukas-reineke/indent-blankline.nvim', -- indent lines
 	'lukas-reineke/headlines.nvim', -- better markdown
 
 	'nvim-lua/plenary.nvim', -- telescope dependency
@@ -18,7 +18,7 @@ require 'paq' {
 
 	{ "nvim-treesitter/playground", cmd = { "TSHighlightCapturesUnderCursor" } },
 
-    -- code completion
+	-- code completion
 	'hrsh7th/nvim-cmp',
 	'hrsh7th/cmp-nvim-lsp',
 
@@ -33,6 +33,9 @@ require 'paq' {
 
 	-- notifications
 	'j-hui/fidget.nvim',
+	
+	-- smooth scrolling
+	'karb94/neoscroll.nvim',
 }
 
 require	'ibl'.setup { -- setup indent blankline
@@ -50,6 +53,10 @@ require 'nvim-treesitter.configs'.setup({
 
 require 'headlines'.setup()
 
+require 'neoscroll'.setup({
+	duration_multiplier = 0.01,
+	performance_mode = true,
+})
 -- tmux setup
 require 'tmux'.setup {
 	copy_sync = {
@@ -71,8 +78,15 @@ require 'tmux'.setup {
 -- tmux/navigation keymaps
 require 'nav'
 
+-- lsp
 require 'rust_lsp'.setup()
 require 'ccls_lsp'.setup()
+
+-- snake case command
+require 'snake_case'
+
+--require 'snow_fall'.setup(2)
+--require 'cursor_particles'.setup(33, 10)
 
 -- vim config
 
@@ -91,23 +105,20 @@ vim.opt.updatetime = 300
 vim.opt.showtabline = 2
 vim.opt.tabline = "%!v:lua.TabLineRelative()"
 
+--require 'audio_vis'.setup(5, 1)
+
 function _G.TabLineRelative()
 	local s = ''
 	local tab_count = vim.fn.tabpagenr('$')
-	for i = 1, tab_count do
-		if i ~= vim.fn.tabpagenr() then
-			goto continue
-		end
-		local winnr = vim.fn.tabpagewinnr(i)
-		local buflist = vim.fn.tabpagebuflist(i)
-		local bufnr = buflist[winnr]
-		if bufnr ~= nil then
-			local bufname = vim.fn.bufname(bufnr)
-			local name = bufname ~= '' and vim.fn.fnamemodify(bufname, ':t') or '[No Name]'
-			s = s .. '%#TabLineSel#'
-			s = s .. name .. ' [' .. i .. ']'
-		end
-		::continue::
+	local tabnr = vim.fn.tabpagenr();
+	local winnr = vim.fn.tabpagewinnr(tabnr)
+	local buflist = vim.fn.tabpagebuflist(tabnr)
+	local bufnr = buflist[winnr]
+	if bufnr ~= nil then
+		local bufname = vim.fn.bufname(bufnr)
+		local name = bufname ~= '' and vim.fn.fnamemodify(bufname, ':t') or '[No Name]'
+		s = s .. '%#TabLineSel#'
+		s = s .. name .. ' [' .. tabnr .. ']'
 	end
 	s = s .. '%#TabLine#' .. ' tab count: ' .. tab_count
 	return s .. '%#TabLineFill#'

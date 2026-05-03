@@ -51,6 +51,9 @@ E.open = function()
 	vim.api.nvim_win_set_cursor(0, { active_tab, 0 })
 	vim.api.nvim_buf_add_highlight(buf, -1, "Visual", active_tab - 1, 0, -1)
 
+	vim.keymap.set("n", "l", function() end, { buffer = buf })
+	vim.keymap.set("n", "h", function() end, { buffer = buf })
+
 	vim.keymap.set("n", "j", function()
 		local line = vim.api.nvim_win_get_cursor(0)[1]
 		if line < #tabs then
