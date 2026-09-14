@@ -29,6 +29,8 @@ session_name="alacritty_auto_${foreign_id}"
 
 tmux rename-session -t "$tmp_session_name" "$session_name"
 
+~/bin/tmux-session.sh $session_name &
+
 while true; do
 	app_id=$(swaymsg -t get_tree | jq -r ".. | select(.foreign_toplevel_identifier? == \"$foreign_id\") | .app_id")
 	if [[ $app_id != "Alacritty" ]]; then

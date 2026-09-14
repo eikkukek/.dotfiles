@@ -14,9 +14,18 @@ set $menu tofi-run | xargs swaymsg exec --
 set $nav_script ~/.config/sway/scripts/nav.sh
 set $reload_script ~/.config/sway/scripts/reload.sh
 
+exec swaync
+
+exec_always ~/bin/low_battery.sh
+
 # wallpaper
-set $wallpaper ~/.dotfiles/cyberpunk.mp4
-exec_always mpvpaper -o "loop" eDP-1 $wallpaper
+set $wallpaper ~/.dotfiles/frieren.mp4
+
+exec_always {
+	mpvpaper -o "loop panscan=1.0" eDP-1 $wallpaper
+	tmux set-environment -g SWAYSOCK "$SWAYSOCK"
+	tmux set-environment -g WAYLAND_DISPLAY "$WAYLAND_DISPLAY"
+}
 
 exec wlsunset -S 06:30 -s 21:00 -t 4000 -T 6500
 
@@ -27,9 +36,11 @@ workspace 1 output eDP-1
 # Input
 input * {
 	xkb_layout "fi"
-	xkb_options "lv3:caps_switch"
+	#xkb_options "lv3:caps_switch"
 	natural_scroll enabled 
 }
+
+focus_wrapping no
 
 ### Key bindings
 #
@@ -160,10 +171,10 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
+    bindsym $right resize shrink width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $left resize grow width 10px
 
     # Ditto, with arrow keys
     bindsym Left resize shrink width 10px

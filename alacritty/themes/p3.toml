@@ -1,0 +1,42 @@
+#[terminal.shell]
+
+[colors.primary]
+background = "#141D3E"
+foreground = "#d8d9db"
+
+[colors.normal]
+black   = "#15161e"
+red     = "#db2e2e"
+green   = "#4dd76b"
+yellow  = "#decc01"
+blue    = "#6599fb"
+magenta = "#cc62d8"
+cyan    = "#29cfe9"
+white   = "#cacce4"
+
+[colors.bright]
+black   = "#414868"
+red     = "#e46363"
+green   = "#87e49b"
+yellow  = "#fef481"
+blue    = "#89b1fc"
+magenta = "#dc93e4"
+cyan    = "#76e0f1"
+white   = "#fafcf9"
+
+[colors.cursor]
+text = "#1a1b26"
+cursor = "#c0caf5"
+
+
+[colors.selection]
+text = "#1a1b26"
+background = "#364a82"
+
+[colors.search]
+matches.background = "#3d59a1"
+matches.foreground = "#c0caf5"
+
+#focused_match.background = "#7aa2f7"
+
+focused_match.foreground = "#1a1b26"

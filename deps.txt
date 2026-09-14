@@ -3,3 +3,6 @@ jq
 wl-clipboard
 wlsunset
 swaybg
+tofi (aur)
+mpvpaper (aur)
+ripgrep for telescope.nvim

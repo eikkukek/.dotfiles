@@ -1,0 +1,14 @@
+[Unit]
+Description=Cava Raw Daemon
+After=pipewire.service
+Wants=pipewire.service
+
+[Service]
+ExecStart=/bin/bash %h/bin/cava-rawd.sh
+Restart=always
+RestartSec=1.0
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

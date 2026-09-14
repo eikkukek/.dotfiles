@@ -1,10 +1,13 @@
 -- plugins
 require 'paq' {
 
-	'savq/paq-nvim', -- let paq manage itself
+	-- paq
+	'savq/paq-nvim',
 
-	'lukas-reineke/indent-blankline.nvim', -- indent lines
-	'lukas-reineke/headlines.nvim', -- better markdown
+	-- indent lines
+	'lukas-reineke/indent-blankline.nvim',
+	-- better markdown
+	'lukas-reineke/headlines.nvim',
 
 	'nvim-lua/plenary.nvim', -- telescope dependency
 
@@ -28,8 +31,9 @@ require 'paq' {
 	-- time tracking
 	'wakatime/vim-wakatime',
 
-	-- color theme	
-	'folke/tokyonight.nvim',
+	-- colors
+	"folke/tokyonight.nvim",
+	'brenoprata10/nvim-highlight-colors',
 
 	-- notifications
 	'j-hui/fidget.nvim',
@@ -58,22 +62,24 @@ require 'neoscroll'.setup({
 	performance_mode = true,
 })
 -- tmux setup
+
 require 'tmux'.setup {
 	copy_sync = {
 		enable = true,
 	},
-	navigation = {
+    navigation = {
 		cycle_navigation = false,
 		enable_default_keybindings = false,
 		persist_zoom = false,
-	},	
-	resize = {
+    },
+    resize = {
 		enable_default_keybindings = false,
-	},
-	swap = {
+    },
+    swap = {
 		enable_default_keybindings = false,
-	}
+    }
 }
+
 
 -- tmux/navigation keymaps
 require 'nav'
@@ -190,8 +196,9 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' 
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
 -- color theme setup
-vim.o.termguicolors = true
-vim.cmd.colorscheme "tokyonight-night"
+vim.cmd([[colorscheme tokyoterm]])
+require('nvim-highlight-colors').setup({})
+vim.cmd([[colorscheme termcol]])
 vim.cmd [[
 	highlight Normal guibg=NONE ctermbg=NONE
 	highlight NormalNC guibg=NONE ctermbg=NONE

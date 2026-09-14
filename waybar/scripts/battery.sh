@@ -1,6 +1,4 @@
-#!/bin/bash
-
-read state pcent < <(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | awk '/state/ {state=$2} /percentage/ {pcent=$2}
+read state pcent < <(upower -b | awk '/state/ {state=$2} /percentage/ {pcent=$2}
 	END { print state " " pcent }
 ')
 

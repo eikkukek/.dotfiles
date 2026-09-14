@@ -88,6 +88,15 @@
 	margin-bottom: 10px;
 }
 
+#custom-bluetooth
+{
+	background: rgba(26, 27, 38, 0.2);
+	color: rgba(102, 222, 255, 0.95);
+	padding: 4px 6px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 #custom-network.alert
 {
 	background: rgba(26, 27, 38, 0.2);
